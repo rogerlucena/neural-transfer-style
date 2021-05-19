@@ -1,12 +1,14 @@
 import PIL.Image
 from keras.preprocessing.image import load_img, img_to_array
 import numpy as np
+import tensorflow as tf
 from scipy.optimize import fmin_l_bfgs_b
 from keras.applications import vgg19
 from keras import backend as K
 from keras.preprocessing.image import save_img
 from PIL import Image
 import argparse
+tf.compat.v1.disable_eager_execution()
 
 
 # Preprocessing image to make it compatible with the VGG19 model
@@ -61,7 +63,7 @@ def total_style_loss(feature_layers, outputs_dict, resized_width, resized_height
         style_reference_features = layer_features[1, :, :, :]
         combination_features = layer_features[2, :, :, :]
         sl = style_loss_per_layer(style_reference_features, combination_features, resized_width, resized_height)
-        loss += (style_weight / len(feature_layers)) * sl
+        loss = loss + (style_weight / len(feature_layers)) * sl
     return loss
 
 
@@ -85,16 +87,16 @@ def total_loss(outputs_dict, content_weight, resized_width, resized_height, styl
 
     # contribution of content_loss
     feature_layers_content = outputs_dict['block5_conv2']
-    loss += content_weight * content_loss(feature_layers_content)
+    loss = loss + content_weight * content_loss(feature_layers_content)
 
     # contribution of style_loss
     feature_layers_style = ['block1_conv1', 'block2_conv1',
                             'block3_conv1', 'block4_conv1',
                             'block5_conv1']
-    loss += total_style_loss(feature_layers_style, outputs_dict, resized_width, resized_height, style_weight) * style_weight
+    loss = loss + total_style_loss(feature_layers_style, outputs_dict, resized_width, resized_height, style_weight) * style_weight
 
     # contribution of variation_loss
-    loss += total_variation_weight * total_variation_loss(combination_image, resized_width, resized_height)
+    loss = loss + total_variation_weight * total_variation_loss(combination_image, resized_width, resized_height)
     return loss
 
 

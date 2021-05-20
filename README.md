@@ -13,11 +13,11 @@ After each iteration, an image is generated.
 
 Run example:
 ```python
-python main.py --base_image=jumping_me.jpg --style_image=starry_night.jpg --iterations=20
+python main.py --base_image=jump.jpg --style_image=the_scream.jpg --iterations=20
 ```
 
 Arguments description:
 
-- --base_image - Type string, default jumping_me.jpg, the image to modify
-- --style_image - Type string, default starry_night.jpg, the image from which the style is transferred
+- --base_image - Type string, default jump.jpg, the image to modify
+- --style_image - Type string, default the_scream.jpg, the image from which the style is transferred
 - --iterations - Type int, default 20, the number of iterations

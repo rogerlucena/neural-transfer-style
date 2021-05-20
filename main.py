@@ -211,8 +211,8 @@ def run(args):
 if __name__ == '__main__':
     # Set options to activate or deactivate the game view, and its speed
     parser = argparse.ArgumentParser()
-    parser.add_argument("--base_image", type=str, default="jumping_me.jpg")
-    parser.add_argument("--style_image", type=str, default="starry_night.jpg")
+    parser.add_argument("--base_image", type=str, default="jump.jpg")
+    parser.add_argument("--style_image", type=str, default="the_scream.jpg")
     parser.add_argument("--iterations", type=int, default=20)
     args = parser.parse_args()
     run(args)

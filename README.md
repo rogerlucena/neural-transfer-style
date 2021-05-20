@@ -3,6 +3,8 @@ Transfer painting styles to chosen images.
 
 This project reproduces the paper "A Neural Algorithm of Artistic Style" by Gatys et al. (https://arxiv.org/abs/1508.06576).
 
+More information and explanations are available [here](https://towardsdatascience.com/artificial-intelligence-meets-art-neural-transfer-style-50e1c07aa7f7).
+
 ## Run
 To run the neural style transfer script:
 - place the base image (the image to modify) in `reference_images\base_image`
